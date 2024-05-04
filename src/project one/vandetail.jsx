@@ -8,11 +8,11 @@ const params = useParams();
 console.log(params)
 // fetch request
 React.useEffect(() => {
-   fetch(`/api/vans/${params.id}`)
-   .then((res) => res.json())
-   .then((data) => setVans(data. vans));
-   console.log(vansdata);
-},[params.id])
+  fetch(`/api/vans/${params.id}`)
+    .then((res) => res.json())
+    .then((data) => setVans(data.vans));
+  console.log(vansdata);
+}, [params.id, vansdata]);
 
     return (
         <>
