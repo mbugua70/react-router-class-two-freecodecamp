@@ -173,3 +173,9 @@ export default VanLifePage;
 //       return `?${sp.toString()}`
 //    }
 // }
+
+
+// query parameters
+//  represent a change in the UI(sorting, pagination, filtering)
+// their rep key/value pair that live in the URL
+// We can multiple type url params seperated by & example (/van?type=rugged&filterBy=price)
