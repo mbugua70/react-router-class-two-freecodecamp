@@ -9,6 +9,9 @@ import { getVans } from "./api";
 import { useLoaderData, defer } from "react-router-dom";
 
 // eport of the loader function.
+// export the loader function from the page that will fetches the data needed
+// the will pass the loader as the prop to the route that will render the page
+// we will use useLoaderData to get the data of the loader
 
 export const loader = () =>{
    return defer({vansdata: getVans()});
