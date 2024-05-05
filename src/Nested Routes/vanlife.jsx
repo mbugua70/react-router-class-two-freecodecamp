@@ -82,68 +82,131 @@ const buttonSearchAppllied = {
                   vansdata => {
                   const displayFilter = typeFilter ? vansdata.filter(char => char.type === typeFilter) : vansdata;
                   console.log(displayFilter)
-                  return(
-                     <div className="vanpage">
-
-                     <h4> Explore our van options</h4>
-                     <div className="vans_buttons">
-                       {/* // using set callback function of useOutletSearchParam() */}
-                       <div className="button_one">
+                  return (
+                    <div className="vanpage">
+                      <h4> Explore our van options</h4>
+                      <div className="vans_buttons">
+                        {/* // using set callback function of useOutletSearchParam() */}
+                        <div className="button_one">
                           {/* <button><Link to="?type=simple">Simple</Link></button> */}
                           {/* <button onClick={() => setSearchParams({type: 'simple'})}>Simple</button> */}
-                         {typeFilter === "simple" ?  <button onClick={() => handleSearchParams("type", "simple")} style={buttonSearchAppllied}>Simple</button> :  <button onClick={() => handleSearchParams("type", "simple")}>Simple</button>}
-                       </div>
-                       <div className="button_two">
-                          {/* <button><Link to="?type=rugged">Rugged</Link></button> */}
-                          {typeFilter === "rugged" ? (<button onClick={() =>  handleSearchParams("type", "rugged")}style = {buttonSearchAppllied}>Rugged</button>) : (<button onClick={() =>  handleSearchParams("type", "rugged")}>Rugged</button>)}
-                       </div>
-                       <div className="button_three">
-                          {/* <button><Link to="?type=luxury">Luxury</Link></button> */}
-                         {typeFilter === "luxury" ? ( <button onClick={() => handleSearchParams("type", "luxury")}style={buttonSearchAppllied}>Luxury</button>) : ( <button onClick={() => handleSearchParams("type", "luxury")}>Luxury</button>)}
-                       </div>
-                       <div className="button_four">
-                          {/* <button><Link to=".">Clear</Link></button> */}
-                         {typeFilter ? (  <button onClick={() => handleSearchParams("type", null)}>Clear</button> ) : ""}
-                       </div>
-                     </div>
-
-                     <div className="vans_data">
-                        {displayFilter.map((vansitem) => {
-                              console.log(vansitem)
-                           return(
-                                <>
-                            <Link
-                            key={vansitem.id}
-                            to={`/vans/${vansitem.id}`}
-                            state={{search: searchParams.toString(), type: typeFilter}}
-                          >
-                            <div className="vans" key={vansitem.id}>
-                            <div className="img">
-                                <img src={vansitem.imageUrl} alt="vans image" />
-                            </div>
-                            <div className="names_price">
-                               <div className="van_name">
-                                  {vansitem.name}
-                               </div>
-                               <div className="van_price">
-                                  <span className="price">${vansitem.price}</span>
-                                  <span className="periond">/day</span>
-                               </div>
-                            </div>
-                           <div className="vans_button">
-                            <button>{vansitem.type}</button>
-                           </div>
+                          {typeFilter === "simple" ? (
+                            <button
+                              onClick={() =>
+                                handleSearchParams("type", "simple")
+                              }
+                              style={buttonSearchAppllied}
+                            >
+                              Simple
+                            </button>
+                          ) : (
+                            <button
+                              onClick={() =>
+                                handleSearchParams("type", "simple")
+                              }
+                            >
+                              Simple
+                            </button>
+                          )}
                         </div>
-                        </Link>
-                                </>
-                            )
+                        <div className="button_two">
+                          {/* <button><Link to="?type=rugged">Rugged</Link></button> */}
+                          {typeFilter === "rugged" ? (
+                            <button
+                              onClick={() =>
+                                handleSearchParams("type", "rugged")
+                              }
+                              style={buttonSearchAppllied}
+                            >
+                              Rugged
+                            </button>
+                          ) : (
+                            <button
+                              onClick={() =>
+                                handleSearchParams("type", "rugged")
+                              }
+                            >
+                              Rugged
+                            </button>
+                          )}
+                        </div>
+                        <div className="button_three">
+                          {/* <button><Link to="?type=luxury">Luxury</Link></button> */}
+                          {typeFilter === "luxury" ? (
+                            <button
+                              onClick={() =>
+                                handleSearchParams("type", "luxury")
+                              }
+                              style={buttonSearchAppllied}
+                            >
+                              Luxury
+                            </button>
+                          ) : (
+                            <button
+                              onClick={() =>
+                                handleSearchParams("type", "luxury")
+                              }
+                            >
+                              Luxury
+                            </button>
+                          )}
+                        </div>
+                        <div className="button_four">
+                          {/* <button><Link to=".">Clear</Link></button> */}
+                          {typeFilter ? (
+                            <button
+                              onClick={() => handleSearchParams("type", null)}
+                            >
+                              Clear
+                            </button>
+                          ) : (
+                            ""
+                          )}
+                        </div>
+                      </div>
 
-
+                      <div className="vans_data">
+                        {displayFilter.map((vansitem) => {
+                          console.log(vansitem);
+                          return (
+                            <>
+                              <Link
+                                key={vansitem.id}
+                                to={`/vans/${vansitem.id}`}
+                                state={{
+                                  search: searchParams.toString(),
+                                  type: typeFilter,
+                                }}
+                              >
+                                <div className="vans" key={vansitem.id}>
+                                  <div className="img">
+                                    <img
+                                      src={vansitem.imageUrl}
+                                      alt="vans image"
+                                    />
+                                  </div>
+                                  <div className="names_price">
+                                    <div className="van_name">
+                                      {vansitem.name}
+                                    </div>
+                                    <div className="van_price">
+                                      <span className="price">
+                                        ${vansitem.price}
+                                      </span>
+                                      <span className="periond">/day</span>
+                                    </div>
+                                  </div>
+                                  <div className="vans_button">
+                                    <button>{vansitem.type}</button>
+                                  </div>
+                                </div>
+                              </Link>
+                            </>
+                          );
                         })}
-                     </div>
-
-                   </div>
-                  )
+                      </div>
+                    </div>
+                  );
 
                   }
                }
