@@ -4,7 +4,8 @@ import { redirect } from "react-router-dom";
 
 export async function requireAuth(request){
      const pathname = new URL(request.url).pathname
-    const isLoggedIn = true;
+     console.log(pathname);
+     const isLoggedIn = false;
     console.log(isLoggedIn);
     if (!isLoggedIn) {
     //  checking if user is logged in

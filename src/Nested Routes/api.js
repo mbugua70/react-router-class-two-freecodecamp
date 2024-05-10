@@ -1,5 +1,5 @@
 export async function getVans(id) {
-    const url = id ? `/api/vans/${id}` : "/api/vans/fjdljf";
+    const url = id ? `/api/vans/${id}` : "/api/vans";
     const res = await fetch(url);
     if(!res.ok){
         throw {
