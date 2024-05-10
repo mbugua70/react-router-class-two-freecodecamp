@@ -14,7 +14,8 @@ import { useLoaderData, defer } from "react-router-dom";
 // we will use useLoaderData to get the data of the loader
 
 export const loader = () =>{
-   return defer({vansdata: getVans()});
+  return defer({ vansdata: getVans() });
+  // throw new Error("This is error handling element");
 }
 
 

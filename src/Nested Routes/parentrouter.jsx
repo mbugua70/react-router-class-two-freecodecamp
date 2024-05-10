@@ -34,93 +34,97 @@ import { requireAuth } from "./utilis";
 
 localStorage.removeItem("logged in")
 
-  export const router = createBrowserRouter(createRoutesFromElements(
-    <Route path="/" element={<Layout/>}>
-    <Route index element={<HomePage/>}/>
-    <Route path="about" element={<About/>}/>
-    <Route path = "login"
-    element={<LoginPage/>}
-    loader={loginLoader}
-    action={loginAction}
-    />
-    {/* <Route element={<AuthControlled/>}> */}
-    <Route
-    path ="vans"
-    element = {<VanLifePage/>}
-    loader={vanLifeLoader}
-    errorElement={<ErrorHandling/>}
+  export const router = createBrowserRouter(
+    createRoutesFromElements(
+      <Route path="/" element={<Layout />}>
+        <Route index element={<HomePage />} />
+        <Route path="about" element={<About />} />
+        <Route
+          path="login"
+          element={<LoginPage />}
+          loader={loginLoader}
+          action={loginAction}
+        />
+        {/* <Route element={<AuthControlled/>}> */}
+        <Route
+          path="vans"
+          element={<VanLifePage />}
+          loader={vanLifeLoader}
+          errorElement={<ErrorHandling />}
+        />
+        <Route
+          path="vans/:id"
+          element={<VansDetailPage />}
+          errorElement={<ErrorHandling />}
+          loader={vanDetailLoader}
+        />
+        {/* below we can nest Route inside another route parent */}
+        <Route path="host" element={<HostLayout />}>
+          <Route
+            index
+            element={<Dashboard />}
+            errorElement={<ErrorHandling />}
+            loader={async ({ request }) => {
+              return await requireAuth(request);
+              // return null
+            }}
+          />
+          <Route
+            path="income"
+            element={<Income />}
+            loader={async ({ request }) => {
+              return await requireAuth(request);
+              // return null
+            }}
+          />
 
-    />
-    <Route
-    path ="vans/:id"
-    element = {<VansDetailPage/>}
-    loader ={ vanDetailLoader}
-    />
-    {/* below we can nest Route inside another route parent */}
-     <Route path="host"  element={<HostLayout/>}>
-    <Route
-    index
-    element={<Dashboard/>}
-    loader={async ({request}) => {
-         return await requireAuth(request)
-        // return null
-    }}
-    />
-    <Route
-    path="income"
-    element={<Income/>}
-    loader={async ({request}) => {
-        return await requireAuth(request)
-      // return null
-    }}
-    />
+          <Route
+            path="reviews"
+            element={<Reviews />}
+            loader={async ({ request }) => {
+              return await requireAuth(request);
+              // return null
+            }}
+          />
 
-<Route path = "reviews"
-    element = {<Reviews/>}
-    loader={async ({request}) => {
-      return await requireAuth(request)
-    // return null
-  }}
-    />
-
-    <Route
-    path="vans"
-    element={<VansPageTwo/>}
-    loader={hostLifeLoader}
-    />
-    <Route
-    path="vans/:id"
-    element={<HostPageLayoutTwo/>}
-    loader={hostVansVansDetailsLoader}
-    >
-    <Route
-    index
-    element={<HostVansDetails/>}
-    loader={
-      async ({request}) => {
-        return await requireAuth(request)
-      // return null
-    }
-    }
-    />
-    <Route path="pricing"
-    element={<HostVansPricing/>}
-    loader={async ({request}) => {
-      return await requireAuth(request)
-    // return null
-  }}
-    />
-    <Route path="photos"
-    element={<HostVansPhoto/>}
-    loader={async ({request}) => {
-      return await requireAuth(request)
-    // return null
-  }}
-    />
-    </Route>
-
-    </Route>
-    <Route path="*" element={<PageNotFound/>}/>
-     {/* </Route> */}
-  </Route>
-  ))
+          <Route
+            path="vans"
+            element={<VansPageTwo />}
+            loader={hostLifeLoader}
+          />
+          <Route
+            path="vans/:id"
+            element={<HostPageLayoutTwo />}
+            loader={hostVansVansDetailsLoader}
+          >
+            <Route
+              index
+              element={<HostVansDetails />}
+              loader={async ({ request }) => {
+                return await requireAuth(request);
+                // return null
+              }}
+            />
+            <Route
+              path="pricing"
+              element={<HostVansPricing />}
+              loader={async ({ request }) => {
+                return await requireAuth(request);
+                // return null
+              }}
+            />
+            <Route
+              path="photos"
+              element={<HostVansPhoto />}
+              loader={async ({ request }) => {
+                return await requireAuth(request);
+                // return null
+              }}
+            />
+          </Route>
+        </Route>
+        <Route path="*" element={<PageNotFound />} />
+        {/* </Route> */}
+      </Route>
+    )
+  );
