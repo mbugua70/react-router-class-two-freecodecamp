@@ -1,0 +1,7 @@
+// HISTORY STACKS //
+- your browser mantain the location or history of every browser you visit
+
+// useActionData //
+-used to hold the return data or message from the action function
+
+// deffered data //

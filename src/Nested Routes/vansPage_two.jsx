@@ -22,48 +22,43 @@ const VansPageTwo = () => {
   //  }, [vansdata])
 
   const vansdataLoadingPromise = useLoaderData();
+
+  const handleRenderElement = (vansdata) => {
+    const hostvans = vansdata.map((vansdataItem) => {
+      return (
+        <>
+          <Link to={`/host/hostvans/${vansdataItem.id}`} key={uuidv4()}>
+            <div className="vansholder_data" key={uuidv4()}>
+              <div className="image_two" key={uuidv4()}>
+                <img src={vansdataItem.imageUrl} alt="" />
+              </div>
+              <div className="contents" key={uuidv4()}>
+                <h5>{vansdataItem.name}</h5>
+                <p className="cost">
+                  <span>${vansdataItem.price}</span>
+                  <span>/day</span>
+                </p>
+              </div>
+            </div>
+          </Link>
+        </>
+      );
+    });
+
+    return (
+      <div className="headings">
+        {/* <section key={uuidv4()}></section> */}
+        {hostvans}
+      </div>
+    );
+  };
   return (
     <>
       <section className="vanspage_two">
+        <h4>Your Listed Vans</h4>
         <Suspense fallback={<h2>Loading host vans.......</h2>}>
           <Await resolve={vansdataLoadingPromise.vansdata}>
-            {(vansdata) => {
-              return (
-                <>
-                  <div className="headings">
-                    <h4>Your Listed Vans</h4>
-                    <div className="vansholder">
-                      {vansdata.map((vansdataItem) => {
-                        return (
-                          <>
-                            <Link
-                              to={`/host/vans/${vansdataItem.id}`}
-                              key={vansdataItem.id}
-                            >
-                              <div
-                                className="vansholder_data"
-                                key={vansdataItem.id}
-                              >
-                                <div className="image_two" key={uuidv4()}>
-                                  <img src={vansdataItem.imageUrl} alt="" />
-                                </div>
-                                <div className="contents">
-                                  <h5>{vansdataItem.name}</h5>
-                                  <p className="cost">
-                                    <span>${vansdataItem.price}</span>
-                                    <span>/day</span>
-                                  </p>
-                                </div>
-                              </div>
-                            </Link>
-                          </>
-                        );
-                      })}
-                    </div>
-                  </div>
-                </>
-              );
-            }}
+            {handleRenderElement}
           </Await>
         </Suspense>
       </section>

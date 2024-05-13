@@ -88,12 +88,12 @@ localStorage.removeItem("logged in")
           />
 
           <Route
-            path="vans"
+            path="hostvans"
             element={<VansPageTwo />}
             loader={hostLifeLoader}
           />
           <Route
-            path="vans/:id"
+            path="hostvans/:id"
             element={<HostPageLayoutTwo />}
             loader={hostVansVansDetailsLoader}
           >

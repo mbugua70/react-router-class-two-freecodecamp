@@ -13,6 +13,9 @@ return new URL(request.url).searchParams.get("message")
 
 }
 
+// choosing the action function does not matter.
+// the action function will intercept the request made when submitting the form
+
 export const loginAction = async({request}) =>{
     console.log("hello")
     const formData = await request.formData();
@@ -40,6 +43,7 @@ const LoginPage = () =>{
 // const [searchParams, setSearchParams] = useSearchParams()
 
 // code for logging status with useNavigation hook
+// give us the status
 const navigation  = useNavigation();
 console.log(navigation);
 
