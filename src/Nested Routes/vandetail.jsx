@@ -33,12 +33,11 @@ const vansdataLoadingPromise = useLoaderData();
 // console.log(vansdata);
 
     return (
-        <>
-          <div className="vansdetailspage">
-             <Suspense fallback={<h2>Loading host vans......</h2>}>
+      <>
+        <div className="vansdetailspage">
+          <Suspense fallback={<h2>Loading host vans......</h2>}>
             <Await resolve={vansdataLoadingPromise.vansdata}>
-             {
-              vansdata =>{
+              {(vansLoadeddata) => {
                 return (
                   <>
                     <Link
@@ -58,22 +57,22 @@ const vansdataLoadingPromise = useLoaderData();
                     <section className="van_details">
                       <div className="van_detail">
                         <div className="van_img">
-                          <img src={vansdata.imageUrl} alt="" />
+                          <img src={vansLoadeddata.imageUrl} alt="" />
                         </div>
                         <div className="van_button">
-                          <button>{vansdata.type}</button>
+                          <button>{vansLoadeddata.type}</button>
                         </div>
                         <div className="van_name">
-                          <p>{vansdata.name}</p>
+                          <p>{vansLoadeddata.name}</p>
                         </div>
                         <div className="van_price">
                           <p>
-                            <span>${vansdata.price}</span>
+                            <span>${vansLoadeddata.price}</span>
                             <span>/day</span>
                           </p>
                         </div>
                         <div className="description">
-                          <p>{vansdata.description}</p>
+                          <p>{vansLoadeddata.description}</p>
                         </div>
                         <div className="book_button">
                           <button>Book The Van</button>
@@ -82,13 +81,12 @@ const vansdataLoadingPromise = useLoaderData();
                     </section>
                   </>
                 );
-              }
-             }
+              }}
             </Await>
-            </Suspense>
-          </div>
-        </>
-     );
+          </Suspense>
+        </div>
+      </>
+    );
 }
 
 export default VansDetailPage;
