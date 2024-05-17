@@ -7,9 +7,10 @@ export async function requireAuth(request){
   console.log(pathname);
   //   const isLoggedIn = false;
   console.log("Running");
-  const isLoggedIn = localStorage.getItem("logged in");
-
+  const isLoggedIn = localStorage.getItem("loggedin");
   console.log(isLoggedIn);
+
+
   if (!isLoggedIn) {
     //  checking if user is logged in
     const response = redirect(

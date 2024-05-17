@@ -13,16 +13,15 @@ const HostPageLayoutTwo = () => {
         <Suspense>
         <Await resolve={vanspageLoadingPage.vanspage}>
           {vanspage => {
-            return(
+            return (
               <>
-       <VansPageDetails/>
-       <div className="image_page">
-        <VanPageDetailsTwo/>
-       <Outlet context={{vanspage}}/>
-      </div>
-
+                <VansPageDetails />
+                <div className="image_page">
+                  <VanPageDetailsTwo />
+                  <Outlet context={{ vanspage }} />
+                </div>
               </>
-            )
+            );
           }}
 
       </Await>

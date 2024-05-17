@@ -9,8 +9,8 @@ import { requireAuth } from "./utilis";
 
 
 export async function loader ({params,request}) {
-   await requireAuth(request)
-   return defer({vanspage: getHostVans(params.id)});
+  await requireAuth(request);
+  return defer({ vanspage: getHostVans(params.id) });
 }
 
 
