@@ -27,36 +27,33 @@ const VansPageDetails = () => {
 const vanspageLoadingPromise = useLoaderData();
 
     return (
-        <>
-         <section className="vansPage">
-            <Suspense fallback={<h2>Loading host vans......</h2>}>
+      <>
+        <section className="vansPage">
+          <Suspense>
             <Await resolve={vanspageLoadingPromise.vanspage}>
-               {
-                  vanspage => {
-                     return(
-                        <>
-                        <div className="main_page">
-                       <div className="container_page" key={vanspage.id}>
+              {(vanspage) => {
+                return (
+                  <>
+                    <div className="main_page">
+                      <div className="container_page" key={vanspage.id}>
                         <Link
-                        // to="/host/vans"
-                        to=".."
-                        relative="path"
-                        className="back_button"
+                          // to="/host/vans"
+                          to=".."
+                          relative="path"
+                          className="back_button"
                         >
-                        &larr; <span>Back to all vans</span>
+                          &larr; <span>Back to all vans</span>
                         </Link>
-                       </div>
-            </div>
-                        </>
-                     )
-                  }
-               }
-
+                      </div>
+                    </div>
+                  </>
+                );
+              }}
             </Await>
-            </Suspense>
-         </section>
-        </>
-     );
+          </Suspense>
+        </section>
+      </>
+    );
 }
 
 export default VansPageDetails;

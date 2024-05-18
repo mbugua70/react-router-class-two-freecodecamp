@@ -10,14 +10,16 @@ const HostPageLayoutTwo = () => {
   const vanspageLoadingPage = useLoaderData();
     return (
         <>
+
         <Suspense>
         <Await resolve={vanspageLoadingPage.vanspage}>
           {vanspage => {
+            console.log(vanspage);
             return (
               <>
                 <VansPageDetails />
                 <div className="image_page">
-                  <VanPageDetailsTwo />
+                  <VanPageDetailsTwo vanspage={vanspage} />
                   <Outlet context={{ vanspage }} />
                 </div>
               </>
