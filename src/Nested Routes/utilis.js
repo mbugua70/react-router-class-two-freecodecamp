@@ -18,7 +18,9 @@ export async function requireAuth(request){
     );
     response.body = true; // It's silly, but it works
     return response;
-    //  return redirect(`/login?message=You must log in first!!&redirectTo=${pathname}`)
+    // return redirect(
+    //   `/login?message=You must log in first!!&redirectTo=${pathname}`
+    // );
   }
   return null;
 }

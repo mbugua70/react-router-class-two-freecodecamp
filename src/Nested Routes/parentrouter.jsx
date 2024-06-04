@@ -64,10 +64,7 @@ localStorage.removeItem("logged in")
             index
             element={<Dashboard />}
             errorElement={<ErrorHandling />}
-            loader={async ({ request }) => {
-              return await requireAuth(request);
-              // return null
-            }}
+
           />
           <Route
             path="income"
